@@ -17,5 +17,6 @@ class SpotHit():
         
         con = MySQL(COSMOSTATS)
         con.upsert_dataframe("`operation_tailing`.`spot_hit`", aggregated_dlrs)
+        con.upsert_dataframe("`operation_tailing`.`sms`", aggregated_dlrs)
         
         return "spot hit done"
