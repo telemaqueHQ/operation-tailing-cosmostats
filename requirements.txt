@@ -1,0 +1,6 @@
+mysql-connector-python==8.0.29
+pandas
+requests
+flask
+flask-cors
+simplejson

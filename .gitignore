@@ -1,0 +1,8 @@
+.venv
+.vscode
+docker-compose.yaml
+docker-compose.yml
+.env
+configuration/__pycache__
+database/__pycache__
+src/__pycache__
