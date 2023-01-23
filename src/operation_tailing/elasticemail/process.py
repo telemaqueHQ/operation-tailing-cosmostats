@@ -17,6 +17,6 @@ class Elasticemail():
         aggregated_dlrs = get_last_minute_dlrs(URL_OPERATION_TAILING_ELASTICEMAIL)
         
         con = MySQL(COSMOSTATS)
-        con.upsert_dataframe("`operation_tailing`.`elasticemail`", aggregated_dlrs)
+        con.insert_dataframe("`operation_tailing`.`elasticemail`", aggregated_dlrs)
         
         return "elasticemail done"

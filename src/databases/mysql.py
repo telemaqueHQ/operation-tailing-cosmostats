@@ -65,6 +65,7 @@ class MySQL:
 
         upsert_query = "INSERT INTO {table_name} (" + cols + ") VALUES (" + values + ") ON DUPLICATE KEY UPDATE " + duplicate_key_update
         upsert_query = upsert_query.format(table_name=table_name)
+        print(upsert_query)
 
         ## upsert
         cursor = self.cursor()
@@ -88,7 +89,6 @@ class MySQL:
     def insert_dataframe(self, table_name, dataframe_to_insert):
 
         print("INSERT")
-        start_time = time.time()
         
         cols = ""
         for col in dataframe_to_insert.columns:
@@ -98,16 +98,12 @@ class MySQL:
         values = "%s,"*(len(dataframe_to_insert.columns))
         values = values[:-1]
 
-        insert_query = "INSERT INTO {table_name} (" + cols + ") VALUES (" + values + ")"
+        insert_query = "INSERT IGNORE INTO {table_name} (" + cols + ") VALUES (" + values + ")"
         insert_query = insert_query.format(table_name=table_name)
 
         cursor = self.cursor()
         records_to_insert = list(dataframe_to_insert.itertuples(index=False, name=None))
-        print("step1 done")
-        print("--- %s seconds ---" % (time.time() - start_time))
         cursor.executemany(insert_query, records_to_insert)
-        print("step2 done")
-        print("--- %s seconds ---" % (time.time() - start_time))
         cursor.close()
 
 
