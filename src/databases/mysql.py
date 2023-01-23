@@ -98,7 +98,7 @@ class MySQL:
         values = "%s,"*(len(dataframe_to_insert.columns))
         values = values[:-1]
 
-        insert_query = "INSERT IGNORE INTO {table_name} (" + cols + ") VALUES (" + values + ")"
+        insert_query = "INSERT INTO {table_name} (" + cols + ") VALUES (" + values + ")"
         insert_query = insert_query.format(table_name=table_name)
 
         cursor = self.cursor()
